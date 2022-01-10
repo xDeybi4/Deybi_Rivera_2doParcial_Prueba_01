@@ -10,7 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Deybi_Rivera_2doParcial_Prueba_01">
         <activity
-            android:name=".MainActivity"
+            android:name=".DPRR_Primero_Flag"
+            android:exported="false"
+            android:label="@string/title_activity_dprr_primero_flag"
+            android:theme="@style/Theme.Deybi_Rivera_2doParcial_Prueba_01.NoActionBar" />
+        <activity
+            android:name=".DPRR_MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
