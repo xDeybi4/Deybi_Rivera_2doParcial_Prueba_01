@@ -29,7 +29,7 @@ public class DPRR_MainActivity extends AppCompatActivity {
 
     public void onClickValidarLogin(View view){
 
-
+        insertarConClases();
         UsuarioDML dml=new UsuarioDML(this);
 
         String username=editTextUsuario.getText().toString();
