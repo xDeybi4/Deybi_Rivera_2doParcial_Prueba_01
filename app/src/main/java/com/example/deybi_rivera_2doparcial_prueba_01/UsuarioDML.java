@@ -17,7 +17,7 @@ public class UsuarioDML {
     }
 
     public void open(){
-        usuarioHelper=new UsuariosHelp(context, "clientesDB", null, 1);
+        usuarioHelper=new UsuariosHelp(context, "UsuariosDB", null, 1);
         sql=usuarioHelper.getWritableDatabase();
     }
 
@@ -35,7 +35,7 @@ public class UsuarioDML {
             ContentValues values=new ContentValues();
 
             ContentValues listaValores=new ContentValues();
-            values.put("Nombre", usuario.getUsuario());
+            values.put("Usuario", usuario.getUsuario());
             values.put("Contrasena", usuario.getContrasena());
 
             count=sql.insert("Usuarios", null, values);
@@ -56,9 +56,9 @@ public class UsuarioDML {
 
         try{
             open();
-            String select="SELECT Nombre, Apellido, Correo " +
-                    "FROM Clientes " +
-                    "WHERE USUARIO="+username;
+            String select="SELECT Usuario, Contrasena " +
+                    "FROM Usuarios " +
+                    "WHERE usuario="+username;
 
             Cursor cursor=sql.rawQuery(select, null);
 

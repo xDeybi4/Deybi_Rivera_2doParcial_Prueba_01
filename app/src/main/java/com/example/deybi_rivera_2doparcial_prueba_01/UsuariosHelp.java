@@ -18,19 +18,12 @@ public class UsuariosHelp extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        // Ejecutar el SQL para crear la estructura de las tablas
         db.execSQL(createTable_Usuarios);
-        // sql: segunda
-        // sql: tercera
-        // vistas, triggers, etc.
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // borrar las tablas
-        db.execSQL("DROP TABLE IF EXISTS CLIENTES");
 
-        // SQL  para crear la tabla o tablas con la nueva estructura
-        db.execSQL(createTable_Usuarios);
     }
 }

@@ -28,13 +28,17 @@ public class DPRR_MainActivity extends AppCompatActivity {
 
 
     public void onClickValidarLogin(View view){
+
+
         UsuarioDML dml=new UsuarioDML(this);
 
         String username=editTextUsuario.getText().toString();
         String contrasena=editTextContrasena.getText().toString();
 
-        if(username.matches("") && contrasena.matches("")){
-            Toast.makeText(this, "Usuario no encontrado.", Toast.LENGTH_SHORT).show();
+        if(username.matches("") || contrasena.matches("")){
+
+            Toast.makeText(this, "Ingresar usuario y contraseña.", Toast.LENGTH_SHORT).show();
+            return;
         }else{
             Usuarios usuario = new Usuarios();
             usuario = dml.selectByUsername(username);
@@ -47,6 +51,22 @@ public class DPRR_MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void insertarConClases() {
+
+        UsuarioDML dml=new UsuarioDML(this);
+
+        Usuarios cliente=new Usuarios();
+
+        cliente.setUsuario("deybi");
+        cliente.setContrasena("deybi");
+        long cantidad=dml.insert(cliente);
+
+        editTextUsuario.setText(cliente.getUsuario());
+        editTextContrasena.setText(cliente.getContrasena());
+
+        Toast.makeText(this, "Se insertó un usuario", Toast.LENGTH_SHORT).show();
     }
 
 }
