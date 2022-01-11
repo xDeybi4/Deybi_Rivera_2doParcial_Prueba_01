@@ -56,7 +56,7 @@ public class UsuarioDML {
 
         try{
             open();
-            String select="SELECT USUARIO, CONTRASENA FROM USUARIOS WHERE USUARIO="+username;
+            String select="SELECT Usuario, Contrasena FROM USUARIOS WHERE Usuario='"+username+"'";
 
             Cursor cursor=sql.rawQuery(select, null);
 

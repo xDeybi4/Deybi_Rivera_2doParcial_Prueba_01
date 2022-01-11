@@ -29,7 +29,6 @@ public class DPRR_MainActivity extends AppCompatActivity {
 
     public void onClickValidarLogin(View view){
 
-        insertarConClases();
         UsuarioDML dml=new UsuarioDML(this);
 
         String username=editTextUsuario.getText().toString();
@@ -43,10 +42,14 @@ public class DPRR_MainActivity extends AppCompatActivity {
             Usuarios usuario = new Usuarios();
             usuario = dml.selectByUsername(username);
 
+            if(usuario!=null){
             if (username.matches(usuario.getUsuario()) && contrasena.matches(usuario.getContrasena())) {
                 Toast.makeText(this, "Login exitoso.", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Contraseña incorrect.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Contraseña incorrecta.", Toast.LENGTH_SHORT).show();
+            }
+            }else{
+                Toast.makeText(this, "Este usuario no existe.", Toast.LENGTH_SHORT).show();
             }
         }
 
