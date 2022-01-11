@@ -34,10 +34,9 @@ public class UsuarioDML {
 
             ContentValues listaValores=new ContentValues();
             values.put("Nombre", usuario.getUsuario());
-            values.put("Apellido", usuario.get());
-            values.put("Correo", usuario.getCorreo());
+            values.put("Contrasena", usuario.getContrasena());
 
-            count=sql.insert("Clientes", null, values);
+            count=sql.insert("Usuarios", null, values);
 
 
         }catch(Exception e){
@@ -50,22 +49,21 @@ public class UsuarioDML {
         return count;
     }
 
-    public Cliente selectByCodigo(String codigo){
-        Cliente cliente=null;
+    public Usuarios selectByUsername(String username){
+        Usuarios usuario=null;
 
         try{
             open();
             String select="SELECT Nombre, Apellido, Correo " +
                     "FROM Clientes " +
-                    "WHERE Codigo="+codigo;
+                    "WHERE USUARIO="+username;
 
             Cursor cursor=sql.rawQuery(select, null);
 
             if(cursor.moveToFirst()){
-                cliente=new Cliente();
-                cliente.setNombre(cursor.getString(0));
-                cliente.setApellido(cursor.getString(1));
-                cliente.setCorreo(cursor.getString(2));
+                usuario=new Usuarios();
+                usuario.setUsuario(cursor.getString(0));
+                usuario.setContrasena(cursor.getString(1));
             }
         }catch (Exception e){
             throw e;
@@ -74,7 +72,7 @@ public class UsuarioDML {
             sql.close();
         }
 
-        return cliente;
+        return usuario;
     }
 
     public ArrayList<String> select(){
@@ -119,18 +117,17 @@ public class UsuarioDML {
         return count;
     }
 
-    public int update(Cliente cliente){
+    public int update(Usuarios usuario){
         int count=0;
 
         try{
             open();
             ContentValues values=new ContentValues();
 
-            values.put("Nombre", cliente.getNombre());
-            values.put("Apellido", cliente.getApellido());
-            values.put("Correo", cliente.getCorreo());
+            values.put("Nombre", usuario.getUsuario());
+            values.put("Apellido", usuario.getContrasena());
 
-            count= sql.update("Clientes", values, "Codigo="+cliente.getCodigo(), null);
+            count= sql.update("Clientes", values, "Codigo="+usuario.getCodigo(), null);
         }catch(Exception e){
             throw e;
         }finally{

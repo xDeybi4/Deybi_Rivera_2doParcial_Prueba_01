@@ -11,6 +11,10 @@ public class Usuarios {
         this.contrasena = contrasena;
     }
 
+    public Usuarios() {
+
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -28,7 +32,7 @@ public class Usuarios {
     }
 
     public String getContrasena() {
-        return apellido;
+        return contrasena;
     }
 
     public void setContrasena(String contrasena) {
