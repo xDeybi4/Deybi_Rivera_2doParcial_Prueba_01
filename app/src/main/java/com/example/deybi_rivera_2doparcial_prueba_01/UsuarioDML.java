@@ -25,6 +25,8 @@ public class UsuarioDML {
         sql.close();
     }
 
+
+
     public long insert(Usuarios usuario){
         long count=0;
 

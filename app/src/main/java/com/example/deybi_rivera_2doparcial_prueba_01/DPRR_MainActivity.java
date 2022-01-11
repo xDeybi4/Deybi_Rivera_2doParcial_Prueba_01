@@ -26,11 +26,6 @@ public class DPRR_MainActivity extends AppCompatActivity {
         editTextContrasena=findViewById(R.id.editText_Contrasena);
     }
 
-    public void open(){
-        usuarioHelp=new UsuariosHelp(context, "Usuarios", null, 1);
-        sql=usuarioHelp.getWritableDatabase();
-    }
-
 
     public void onClickValidarLogin(View view){
         UsuarioDML dml=new UsuarioDML(this);
@@ -38,14 +33,20 @@ public class DPRR_MainActivity extends AppCompatActivity {
         String username=editTextUsuario.getText().toString();
         String contrasena=editTextContrasena.getText().toString();
 
+        if(username.matches("") && contrasena.matches("")){
+            Toast.makeText(this, "Usuario no encontrado.", Toast.LENGTH_SHORT).show();
+        }else{
+            Usuarios usuario = new Usuarios();
+            usuario = dml.selectByUsername(username);
 
-        Usuarios usuario = new Usuarios();
-        usuario = dml.selectByUsername(username);
-
-        if (username.matches(usuario.getUsuario()) && contrasena.matches(usuario.getContrasena())) {
-            Toast.makeText(this, "Login exitoso.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Contraseña incorrect.", Toast.LENGTH_SHORT).show();
+            if (username.matches(usuario.getUsuario()) && contrasena.matches(usuario.getContrasena())) {
+                Toast.makeText(this, "Login exitoso.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Contraseña incorrect.", Toast.LENGTH_SHORT).show();
+            }
         }
+
+
     }
+
 }
